@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "niimprint"
-version = "0.1.0"
-description = ""
-authors = []
+version = "0.1.1"
+description = "Niimbot printer driver with B1 patch"
+authors = [{ name = "Rafal", email = "your@email.com" }]
+homepage = "https://github.com/vhclafar/niimprint"
 
 [tool.poetry.dependencies]
 python = "~3.11"
