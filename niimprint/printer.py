@@ -109,9 +109,10 @@ class PrinterClient:
         self.set_dimension(image.height, image.width)
         # self.set_quantity(1)  # Same thing (B21)
         for pkt in self._encode_image(image):
+            self._log_buffer("send", pkt.to_bytes())
             self._send(pkt)
         self.end_page_print()
-        time.sleep(0.3)  # FIXME: Check get_print_status()
+        time.sleep(1.5)  # FIXME: Check get_print_status()
         while not self.end_print():
             time.sleep(0.1)
 
@@ -274,7 +275,7 @@ class PrinterClient:
 
     def set_dimension(self, w, h):
         packet = self._transceive(
-            RequestCodeEnum.SET_DIMENSION, struct.pack(">HH", w, h)
+            RequestCodeEnum.SET_DIMENSION, struct.pack(">HHH", w, h, 1)
         )
         return bool(packet.data[0])
 
